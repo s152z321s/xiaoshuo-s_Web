@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select User Type</title>
+    <style>
+        /* 页面全局样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom right, #e6f7ff, #cce7ff); /* 渐变背景 */
+            background-image: url("bc.jpg"); /* 添加背景图片，与之前页面一致 */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 容器样式 */
+        .registrationForm {
+            background-color: rgba(255, 255, 255, 0.9); /* 半透明背景 */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 350px;
+        }
+
+        /* 标题样式 */
+        #title {
+            font-size: 40px;
+            font-weight: bold;
+            color: #1bb066; /* 绿色主题，与前两个页面一致 */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        /* 按钮样式 */
+        .registrationForm input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 按钮悬停效果 */
+        .registrationForm input:hover {
+            background-color: #45a049;
+            transform: scale(1.03); /* 悬停时稍微放大 */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 按钮点击效果 */
+        .registrationForm input:active {
+            transform: scale(0.98);
+        }
+
+        /* 分隔线样式 */
+        .divider {
+            border-top: 2px solid #ddd;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 用户类型选择表单 -->
+    <div class="registrationForm">
+        <h1 id="title">Select User Type</h1>
+        <div class="divider"></div> <!-- 添加分隔线 -->
+        <input type="button" value="USER" onclick="user()">
+        <input type="button" value="REGULATOR" onclick="regulator()">
+    </div>
+</body>
+<script>
+    // 跳转到用户页面
+    function user() {
+        window.location.href = "first.html";
+    }
+
+    // 跳转到监管者页面
+    function regulator() {
+        window.location.href = "regulator_page.html";
+    }
+</script>
+</html>

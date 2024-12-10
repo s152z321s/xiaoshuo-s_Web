@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        /* 页面全局样式 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        a {
+            color: antiquewhite;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #f4d03f; /* 悬停时颜色变化 */
+        }
+
+        /* 外部容器背景 */
+        .outer {
+            height: 100vh;
+            background: url("bc.jpg") no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 顶部导航栏样式 */
+        .navigation {
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .navigation div {
+            display: inline-block;
+            margin-left: 15px;
+        }
+
+        /* 左侧栏样式 */
+        .le {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* 标题样式 */
+        .tit {
+            color: bisque;
+            font-size: 50px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        /* 按钮样式 */
+        .button {
+            background-color: #4CAF50; /* 绿色按钮 */
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <!-- 顶部导航栏 -->
+        <div class="navigation">
+            <div class="first">
+                <a href="https://weixin.qq.com/">WeChat</a>
+            </div>
+            <div class="second">
+                <a href="https://www.youtube.com/">YouTube</a>
+            </div>
+        </div>
+
+        <!-- 左侧装饰栏 -->
+        <div class="le"></div>
+
+        <!-- 中央标题 -->
+        <span class="tit">Don't memorize words</span>
+
+        <!-- 按钮跳转至 user_page.html -->
+        <button class="button" onclick="window.location.href='user_page.html'">Start</button>
+    </div>
+</body>
+</html>

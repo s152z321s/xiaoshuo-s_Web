@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RightMean</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url("bc.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-shadow: 1px 1px 2px #000; /* 给文字添加阴影增加可读性 */
+        }
+        h1, p {
+            margin: 10px 0;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.6); /* 添加半透明背景 */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 添加阴影 */
+            text-align: center;
+            max-width: 400px;
+        }
+        .button, #searchButton {
+            background-color: #d05c14; /* 统一按钮配色 */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover, #searchButton:hover {
+            background-color: #45a049;
+        }
+        #searchInput {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 250px;
+            margin-top: 10px;
+        }
+        hr {
+            width: 80%;
+            margin: 20px auto;
+            border: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="word">请输入要查询的单词</h1>
+        <input type="text" id="searchInput" placeholder="输入单词..." />
+        <button id="searchButton" onclick="searchWord()">查询</button>
+        
+        <hr>
+        
+        <p id="meaning">含义: N/A</p>
+        <p id="soundmark">音标: N/A</p>
+        <p id="example">例句: N/A</p>
+        
+        <button class="button" onclick="goBack()">返回</button>
+    </div>
+
+    <script>
+        // 返回上一页
+        function goBack() {
+            window.location.replace('first.html');
+        }
+
+        // 获取单词详细信息
+        async function fetchWordDetails(word) {
+            try {
+                const response = await fetch(`http://127.0.0.1:3000/api/get-word-details?word=${word}`);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch word details');
+                }
+
+                const data = await response.json();
+
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                // 更新页面上的单词信息
+                document.getElementById('word').textContent = data.word || 'No word found';
+                document.getElementById('meaning').textContent = `含义: ${data.MeaningOfword || '无含义'}`;
+                document.getElementById('soundmark').textContent = `音标: ${data.Soundmark || '无音标'}`;
+                document.getElementById('example').textContent = `例句: ${data.Example_Sentence || '无例句'}`;
+
+            } catch (err) {
+                console.log('Error fetching word details:', err);
+                document.getElementById('word').textContent = '加载失败，请重试！';
+                document.getElementById('meaning').textContent = '含义: N/A';
+                document.getElementById('soundmark').textContent = '音标: N/A';
+                document.getElementById('example').textContent = '例句: N/A';
+            }
+        }
+
+        // 查询单词
+        function searchWord() {
+            const word = document.getElementById('searchInput').value.trim();
+            if (word) {
+                fetchWordDetails(word);
+            } else {
+                alert('请输入要查询的单词！');
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+

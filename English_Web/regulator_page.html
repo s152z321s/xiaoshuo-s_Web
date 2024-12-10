@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Adding Page</title>
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: Arial, sans-serif;
+            background: url("bc.jpg") no-repeat center center fixed; /* 统一背景 */
+            background-size: cover;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        /* 输入框样式 */
+        .input-field {
+            display: block;
+            width: 300px;
+            padding: 12px;
+            margin: 10px auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #4CAF50;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 按钮样式 */
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .button:active {
+            transform: scale(0.98);
+        }
+
+        /* 左侧装饰栏 */
+        .le {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧栏 -->
+    <div class="le"></div>
+
+    <!-- 页面内容 -->
+    <h1>Add a New Word</h1>
+
+    <!-- 输入框 -->
+    <input class="input-field" type="text" id="word" placeholder="Enter Word">
+    <input class="input-field" type="text" id="meaning" placeholder="Enter Meaning">
+    <input class="input-field" type="text" id="soundmark" placeholder="Enter Soundmark">
+    <input class="input-field" type="text" id="example" placeholder="Enter Example Sentence">
+
+    <!-- 按钮 -->
+    <button class="button" onclick="addWord()">Add Word</button>
+
+    <script src="mysql_control.js"></script>
+    <script>
+        function addWord() {
+            const word = document.getElementById('word').value.trim();
+            const meaning = document.getElementById('meaning').value.trim();
+            const soundmark = document.getElementById('soundmark').value.trim();
+            const example = document.getElementById('example').value.trim();
+
+            // 确保所有字段都有值
+            if (word && meaning && soundmark && example) {
+                addWordToDB(word, meaning, soundmark, example);
+                alert('Word added successfully!');
+                clearFields(); // 清空输入框
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        function clearFields() {
+            document.getElementById('word').value = '';
+            document.getElementById('meaning').value = '';
+            document.getElementById('soundmark').value = '';
+            document.getElementById('example').value = '';
+        }
+
+        function addWordToDB(word, meaning, soundmark, example) {
+            // 示例代码：模拟数据库插入（需后端支持）
+            console.log(`Adding word: ${word}, Meaning: ${meaning}, Soundmark: ${soundmark}, Example: ${example}`);
+            // 这里需要将代码与后端连接，例如发送 AJAX 请求到服务器。
+        }
+    </script>
+</body>
+</html>
